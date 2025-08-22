@@ -41,12 +41,12 @@ public class LoginServlet extends GenericServlet {
 		try {
 			BasicDataSource bds = DataSource.getInstance().getBds();
 			conn = bds.getConnection();
-			//stmt = conn.createStatement();
-			//String query = "select * from users where id = " + userId;
-	        ps = conn.prepareStatement("select * from users where id = ?");
-			ps.setString(1,userId);
-			rs = ps.executeQuery();
-			//rs = stmt.executeQuery(query);
+			stmt = conn.createStatement();
+			String query = "select * from users where id = " + userId;
+	        //ps = conn.prepareStatement("select * from users where id = ?");
+			//ps.setString(1,userId);
+			//rs = ps.executeQuery();
+			rs = stmt.executeQuery(query);
 	        while (rs.next()) {
 	        	result.append("<li>" + rs.getInt(1)+ " " + rs.getString(2) + " " + rs.getString(3)+ " " + rs.getString(4)+ " " + rs.getString(5) + "</li>");
 	        }
