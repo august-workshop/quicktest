@@ -20,8 +20,8 @@ public class LoginServlet extends GenericServlet {
 
 	@Override
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-		String userId = Utility.cleanInputAsString(req.getParameter("userId"));
-		String password = Utility.cleanInputAsString(req.getParameter("password"));
+		String userId = req.getParameter("userId");
+		String password = req.getParameter("password");
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();
 		out.println("<html><head><title>Hello World!</title></head>");
@@ -35,14 +35,18 @@ public class LoginServlet extends GenericServlet {
 	private static String getUser(String userId) {
 		Connection conn = null;
 		Statement stmt = null;
+		PreparedStatement ps = null;
 		ResultSet rs = null;
 		StringBuffer result = new StringBuffer();
 		try {
 			BasicDataSource bds = DataSource.getInstance().getBds();
 			conn = bds.getConnection();
-			stmt = conn.createStatement();
-			String query = " select * from users where id = " + userId;
-	        rs = stmt.executeQuery(query);
+			//stmt = conn.createStatement();
+			//String query = "select * from users where id = " + userId;
+	        ps = conn.prepareStatement("select * from users where id = ?");
+			ps.setString(1,userId);
+			rs = ps.executeQuery();
+			//rs = stmt.executeQuery(query);
 	        while (rs.next()) {
 	        	result.append("<li>" + rs.getInt(1)+ " " + rs.getString(2) + " " + rs.getString(3)+ " " + rs.getString(4)+ " " + rs.getString(5) + "</li>");
 	        }
