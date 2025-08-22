@@ -22,6 +22,8 @@ public class LoginServlet extends GenericServlet {
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
 		String userId = Utility.cleanInputAsString(req.getParameter("userId"));
 		String password = Utility.cleanInputAsString(req.getParameter("password"));
+		//String userId = req.getParameter("userId");
+		//String password = req.getParameter("password");
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();
 		out.println("<html><head><title>Hello World!</title></head>");
@@ -44,7 +46,7 @@ public class LoginServlet extends GenericServlet {
 			String query = " select * from users where id = " + userId;
 	        rs = stmt.executeQuery(query);
 	        while (rs.next()) {
-	        	result.append("<li>" + rs.getInt(1)+ " " + rs.getString(2) + " " + rs.getString(3)+ " " + rs.getString(4)+ " " + rs.getString(5) + "</li>");
+	        	result.append("<li>" + rs.getInt(1)+ " " + rs.getString(3) + " " + rs.getString(2)+ " " + rs.getString(4)+ " " + rs.getString(5) + "</li>");
 	        }
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
