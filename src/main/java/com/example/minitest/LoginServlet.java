@@ -26,7 +26,7 @@ public class LoginServlet extends GenericServlet {
 		PrintWriter out = res.getWriter();
 		out.println("<html><head><title>Hello World!</title></head>");
 		if (userId != null && !"".equals(userId)) {
-			out.println("<body><h1>Hello User" + userId + "</h1>" + getUser(userId) + "</body></html>");
+			out.println("<body><h2>Hello User" + userId + "</h2>" + getUser(userId) + "</body></html>");
 		} else {
 			out.println("<body><h1>Hello World!</h1></body></html>");
 		}
