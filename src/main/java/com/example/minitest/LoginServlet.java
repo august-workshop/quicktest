@@ -26,7 +26,7 @@ public class LoginServlet extends GenericServlet {
 		PrintWriter out = res.getWriter();
 		out.println("<html><head><title>Hello World!</title></head>");
 		if (userId != null && !"".equals(userId)) {
-			out.println("<body><h1>Hello User" + userId + "</h1>" + getUser(userId) + "</body></html>");
+			out.println("<body><h2>Hello User" + userId + "</h2>" + getUser(userId) + "</body></html>");
 		} else {
 			out.println("<body><h1>Hello World!</h1></body></html>");
 		}
@@ -48,7 +48,7 @@ public class LoginServlet extends GenericServlet {
 			//rs = ps.executeQuery();
 			rs = stmt.executeQuery(query);
 	        while (rs.next()) {
-	        	result.append("<li>" + rs.getInt(1)+ " " + rs.getString(2) + " " + rs.getString(3)+ " " + rs.getString(4)+ " " + rs.getString(5) + "</li>");
+	        	result.append("<li>" + rs.getInt(1)+ " " + rs.getString(3) + " " + rs.getString(2)+ " " + rs.getString(4)+ " " + rs.getString(5) + "</li>");
 	        }
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
